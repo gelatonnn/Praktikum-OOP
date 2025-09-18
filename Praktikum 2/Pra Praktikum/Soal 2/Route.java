@@ -6,8 +6,8 @@ public class Route {
 
     public Route(String startPoint, String destination, int distance, int averageSpeed) {
 	/**
-     * TODO: Buatlah konstruktor untuk kelas route ini
-     * */
+	 * TODO: Buatlah konstruktor untuk kelas route ini
+	 * */
         this.startPoint = startPoint;
         this.destination = destination;
         this.distance = distance;
@@ -16,29 +16,24 @@ public class Route {
 
     public void showRoute() {
 	    /**
-         * TODO: Menampilkan informasi rute dengan format,
-         * 		"{startPoint} >> {destination} ({distance} km)
-         * 		Estimasi waktu tempuh: {time} jam"
-         * */
-        System.out.println(startPoint + " >> " + destination + " (" + distance + " km)");
-        double time = estimateTravelTime();
-        if (time >= 0) {
-            System.out.println("Estimasi waktu: " + time + " jam");
-        } else {
-            System.out.println("Estimasi waktu tidak valid (kecepatan salah).");
-        }
+	     * TODO: Menampilkan informasi rute dengan format,
+	     * 		"{startPoint} >> {destination} ({distance} km)
+	     * 		Estimasi waktu tempuh: {time} jam"
+	     * 		Waktu tempuh ditulis sampai 1 angka di belakang koma.
+	     * */
+        System.out.println(this.startPoint + " >> " + this.destination + " (" + this.distance + " km)");
+        System.out.printf("Estimasi waktu tempuh: %.1f jam\n", estimateTravelTime());
     }
 
     public double estimateTravelTime() {
 	    /**
-         * TODO: Fungsi ini memprediksi berapa lama rute ditempuh dengan 
-         * kecepatan rata rata
-         * */
-        if (averageSpeed > 0) {
-            return (double) distance / averageSpeed;
-        } else {
-            return -1; 
+	     * TODO: Fungsi ini memprediksi berapa lama rute ditempuh dengan 
+	     * kecepatan rata rata
+	     * */
+        if (this.averageSpeed <= 0) {
+            return -1;
         }
+        return (double) this.distance / this.averageSpeed;
     }
 
     public String getStartPoint() {

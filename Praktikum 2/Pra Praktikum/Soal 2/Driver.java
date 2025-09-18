@@ -5,37 +5,32 @@ public class Driver {
 
     public Driver(String name, String licenseNumber) {
 	/**
-     * TODO: Buatlah konstruktor untuk driver 
-     * 	sesuai dengan attribut yang dimiliki oleh kelas driver,
-     *	Rating diset default ke nol. 	
-     * */
+	 * TODO: Buatlah konstruktor untuk driver 
+	 * 	sesuai dengan attribut yang dimiliki oleh kelas driver,
+	 *	Rating diset default ke nol. 	
+	 * */
         this.name = name;
         this.licenseNumber = licenseNumber;
-        if (rating >= 0.0 && rating <= 5.0) {
-            this.rating = 0.0; 
-        } else {
-            this.rating = 0.0; 
-        }
+        this.rating = 0.0;
     }
 
     public void introduce() {
  	/**
-     * TODO: Fungsi ini untuk memperkenalkan driver dengan format
-     * 	"Supir: {name} - Lisensi: {license} - Rating: {rating}"
-     * */
-        System.out.println("Supir: " + name + " - Lisensi: " + licenseNumber + " - Rating: " + rating);
+	 * TODO: Fungsi ini untuk memperkenalkan driver dengan format
+	 * 	"Supir: {name} - Lisensi: {license} - Rating: {rating}"
+	 * */
+        System.out.println("Supir: " + this.name + " - Lisensi: " + this.licenseNumber + " - Rating: " + this.rating);
     }
 
     public void updateRating(double newRating) {
-    /**
+   	/**
 	 * TODO: Fungsi ini untuk melakukan update pada rating 
 	 * 	Jika gagal, output saja "Rating harus antara 0 sampai 5"
 	 * */
-        if (newRating >= 0.0 && newRating <= 5.0) {
+        if (newRating >= 0 && newRating <= 5) {
             this.rating = newRating;
-            System.out.println("Rating supir " + name + " diperbarui menjadi " + rating);
         } else {
-            System.out.println("Error: rating tidak valid (0–5).");
+            System.out.println("Rating harus antara 0 sampai 5");
         }
     }
 

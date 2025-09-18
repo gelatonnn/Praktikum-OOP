@@ -6,28 +6,27 @@ public class TransportSystem {
 
     public TransportSystem(String name) {
   	/**
-     * TODO: Buatlah konstruktor untuk sistem transportasi
-     * */
+	 * TODO: Buatlah konstruktor untuk sistem transportasi
+	 * */ 
         this.name = name;
-        this.vehicles = new ArrayList<>();
+        this.vehicles = new ArrayList<Vehicle>();
     }
 
     public void addVehicle(Vehicle vehicle) {
        	/**
-        * TODO: Fungsinya untuk menambahkan objek kendaraan ke list kendaraan 
-        * */
-        vehicles.add(vehicle);
-        System.out.println("Kendaraan ditambahkan: " + vehicle);
+	 * TODO: Fungsinya untuk menambahkan objek kendaraan ke list kendaraan 
+	 * */ 
+        this.vehicles.add(vehicle);
     }
 
     public Vehicle findVehicleByDriver(String driverName) {
 	/**
-     * TODO: Fungsi untuk mencari kendaraan berdasarkan nama dari driver, 
-     * kembalikan nulljika tidak ditemukan
-     * */
-        for (Vehicle v : vehicles) {
-            if (v.getDriver() != null && v.getDriver().getName().equalsIgnoreCase(driverName)) {
-                return v;
+	 * TODO: Fungsi untuk mencari kendaraan berdasarkan nama dari driver, 
+	 * kembalikan nulljika tidak ditemukan
+	 * */
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getDriver().getName().equals(driverName)) {
+                return vehicle;
             }
         }
         return null;
@@ -35,26 +34,17 @@ public class TransportSystem {
 
     public int totalPassengerCapacity() {
 	/**
-     * TODO: Menghitung seluruh kapasitas yang tersedia
-     * */
+	 * TODO: Menghitung seluruh kapasitas yang tersedia
+	 * */	
         int totalCapacity = 0;
-        for (Vehicle v : vehicles) {
-            totalCapacity += v.getCapacity();
+        for (Vehicle vehicle : vehicles) {
+            totalCapacity += vehicle.getCapacity();
         }
         return totalCapacity;
     }
 
     public void showAllVehicles() {
-        System.out.println("=== Transport System: " + name + " ===");
-        if (vehicles.isEmpty()) {
-            System.out.println("No vehicles in the system.");
-        } else {
-            for (Vehicle v : vehicles) {
-                v.showInfo();
-                System.out.println("-------------------");
-            }
-        }
-	/**
+        /**
 	 * TODO: Menampilkan seluruh info kendaraan dengan format
 	 * 	"=== Transport System: {name} ===
 	 * 	{info vehicles}
@@ -63,7 +53,19 @@ public class TransportSystem {
 	 *	-------------------
 	 *	...
 	 *	"
+	 *	Baris terakhir disertai garis juga yah.
+	 *	jika kendaraan kosong, keluarkan "No vehicles in the system
 	 * */
+        System.out.println("=== Transport System: " + this.name + " ===");
+        if (vehicles.isEmpty()) {
+            System.out.println("No vehicles in the system");
+            System.out.println("-------------------");
+            return;
+        }
+        for (Vehicle vehicle: vehicles) {
+            vehicle.showInfo();
+            System.out.println("-------------------");
+        }
     }
 
     public String getName() {
