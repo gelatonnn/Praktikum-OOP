@@ -1,5 +1,3 @@
-// MASIH BELUM SELESAI
-
 import java.util.ArrayList;
 
 class Cart {
@@ -10,7 +8,7 @@ class Cart {
 
     // TODO: Constructor cart untuk inisialisasi list dengan list kosong dan totalPrice dengan 0.0
     Cart() {
-        products = new ArrayList<>();
+        products = new ArrayList<Product>();
         totalPrice = 0.0;
     }
     
@@ -39,21 +37,20 @@ class Cart {
     // Hint : Manfaatkan method toString() dari class Product
     public void showCart() {
         System.out.println("Isi Keranjang:");
-        if (products.isEmpty()) {
+        if (totalPrice == 0.0) {
             System.out.println("(Kosong)");
         } else {
-            for (Product p : products) {
+            for (Product p: products){
                 System.out.println(p.toString());
             }
             System.out.println("Total harga: " + totalPrice);
         }
-        System.out.println();
     }
     
 
     // TODO: Buat method clearCart() untuk mengosongkan list products dan reset totalPrice ke 0.0
     public void clearCart() {
-        products.clear();
         totalPrice = 0.0;
+        products.clear();
     }
 }

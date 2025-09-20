@@ -1,5 +1,3 @@
-//MASIH BELUM SELESAI
-
 class User {
     // TODO: Deklarasikan atribut: name (String), balance (double), cart (Cart)
     // TODO: Deklarasikan atribut static totalUserTransactions (int) untuk melacak total transaksi semua user, nilai awal 0
@@ -12,7 +10,7 @@ class User {
     User(String name, double balance) {
         this.name = name;
         this.balance = balance;
-        this.cart = new Cart();
+        cart = new Cart();
     }
 
     // TODO: Buat method untuk menambahkan produk ke cart
@@ -24,13 +22,12 @@ class User {
     // - jika balance >= totalPrice cart, kurangi saldo dengan totalPrice cart dan kosongkan cart. Tambahkan totalUserTransactions dengan 1
     // - jika saldo kurang, cetak "Saldo tidak cukup"
     public void checkout() {
-        double totalPrice = cart.getTotalPrice();
-        if (balance >= totalPrice) {
-            balance -= totalPrice;
+        if (balance < cart.getTotalPrice()){
+            System.out.println("Saldo tidak cukup");
+        } else {
+            balance -= cart.getTotalPrice();
             cart.clearCart();
             totalUserTransactions++;
-        } else {
-            System.out.println("Saldo tidak cukup\n");
         }
     }
 

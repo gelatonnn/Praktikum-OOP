@@ -1,5 +1,3 @@
-// MASIH BELUM SELESAI
-
 class Product {
     // TODO: Deklarasikan atribut: name (String), price (double)
     private String name;
