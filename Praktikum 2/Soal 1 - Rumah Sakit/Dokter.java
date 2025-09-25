@@ -34,7 +34,7 @@ public class Dokter {
         } else if (spesialisasi.equalsIgnoreCase("Anak")) {
             this.tarif = 200000;
         } else {
-            this.tarif = 150000; // default
+            this.tarif = 150000;
         }
 
         // TODO 1e: Tambahkan bonus pengalaman berdasarkan umur
