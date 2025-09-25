@@ -85,7 +85,8 @@ public class Dokter {
     // Format: "kodeDokter - nama (spesialisasi) - Pasien: current/max"
     // Contoh: "DR001 - Dr. Budi (Umum) - Pasien: 2/3"
     public String toString() {
-        return kodeDokter + " - " + dataPribadi.toString() + " (" + spesialisasi + ") - Pasien: " + jumlahPasien + "/" + MAX_PASIEN;
+        return String.format("%s - Dr. %s (%s) - Pasien: %d/3", kodeDokter, dataPribadi.getNama(), spesialisasi,
+                jumlahPasien);
     }
 
     // TODO 7: Buat method getter untuk semua atribut private

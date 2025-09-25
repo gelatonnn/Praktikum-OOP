@@ -1,5 +1,5 @@
-package Praktikum 3.Pra Praktikum.Soal 4 - Operating System;
-
-public class UsageType {
-    
+public enum UsageType {
+    SERVER,
+    DEVELOPMENT,
+    GAMING
 }
