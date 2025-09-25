@@ -27,8 +27,12 @@ public class Milkshake extends MenuItem {
         //       quantity=volumeMl, unit=Unit.ML, kategori=Kategori.MINUMAN
         // TODO: simpan parameter jenis, iceCreamTopping, ukuran ke atribut
         super("Milkshake", volumeMl, Unit.ML, Kategori.MINUMAN);
-        setJenis(jenis);
         this.iceCreamTopping = iceCreamTopping;
+        if (jenis == null || jenis.trim().isEmpty()) {
+            this.jenis = "Original";
+        } else {
+            this.jenis = jenis.trim();
+        }
         this.ukuran = ukuran;
     }
 
@@ -38,7 +42,7 @@ public class Milkshake extends MenuItem {
      * @return jenis milkshake
      */
     public String getJenis() { 
-        return this.jenis;
+        return jenis;
     }
 
     /**
@@ -63,7 +67,7 @@ public class Milkshake extends MenuItem {
      * @return iceCreamTopping
      */
     public boolean hasIceCreamTopping() { 
-        return this.iceCreamTopping;
+        return iceCreamTopping;
     }
 
     /**
@@ -81,7 +85,7 @@ public class Milkshake extends MenuItem {
      * @return ukuran milkshake
      */
     public Ukuran getUkuran() { 
-        return this.ukuran;
+        return ukuran;
     }
     
     /**
@@ -90,7 +94,7 @@ public class Milkshake extends MenuItem {
      * @param ukuran ukuran milkshake baru
      */
     public void setUkuran(Ukuran ukuran) {
-
+        this.ukuran = ukuran;
     }
 
     /**
@@ -106,18 +110,23 @@ public class Milkshake extends MenuItem {
      */
     @Override
     public int basePrice() {
-        int base = 0;
-        if (ukuran == Ukuran.SMALL) {
-            base = 10000;
-        } else if (ukuran == Ukuran.MEDIUM) {
-            base = 13000;
-        } else if (ukuran == Ukuran.LARGE) {
-            base = 15000;
+        int harga = 0;
+        switch (this.ukuran) {
+            case SMALL :
+                harga = 10000;
+                break;
+            case MEDIUM :
+                harga  = 13000;
+                break;
+            case LARGE : 
+                harga = 15000;
+                break;
         }
-        if (iceCreamTopping) {
-            base += 5000;
+
+        if (this.iceCreamTopping){
+            harga += 5000;
         }
-        return base;
+        return harga;
     }
 
     /**
@@ -130,10 +139,11 @@ public class Milkshake extends MenuItem {
      */
     @Override
     public String label() {
-       String toppingText = "";
-        if (iceCreamTopping) {
-            toppingText = " Float";
+        if (this.iceCreamTopping){
+            return super.getNamaMenu() + " " + this.jenis + " Float [" + this.ukuran.toString() + "] " + super.getQuantity() + ((super.getUnit() == Unit.ML) ? "ml" : "g");
         }
-        return "Milkshake " + jenis + toppingText + " [" + ukuran + "] " + getQuantity() + "ml"; 
+        else{
+            return super.getNamaMenu() + " " + this.jenis + " [" + this.ukuran.toString() + "] " + super.getQuantity() + ((super.getUnit() == Unit.ML) ? "ml" : "g");
+        }
     }
 }

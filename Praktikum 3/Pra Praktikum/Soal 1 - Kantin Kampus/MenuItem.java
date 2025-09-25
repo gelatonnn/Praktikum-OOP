@@ -19,7 +19,7 @@
     /** Counter total objek yang pernah dibuat. */
     private static int totalCreated;
 
-    /** Persentase promo global (0 - 90). */
+    /** Persentase promo global (0-90). */
     private static int promoPercent;
     
     /**
@@ -44,8 +44,8 @@
      * @param kategori  kategori menu (MAKANAN atau MINUMAN)
      */
     public MenuItem(String namaMenu, int quantity, Unit unit, Kategori kategori) {
-        this.namaMenu = namaMenu;
-        this.quantity = (quantity < 0) ? 100 : quantity;
+        this.namaMenu = (namaMenu == null) ? "Unknown" : namaMenu.trim();
+        this.quantity = (quantity >=0) ? quantity : 100;
         this.unit = unit;
         this.kategori = kategori;
         totalCreated++;
@@ -105,8 +105,11 @@
      * @param percent persentase promo
      */
     public static void setPromo(int percent) {
-        if (percent >= 0 && percent <= 90) {
+        if (percent >= 0 && percent <= 90){
             promoPercent = percent;
+        }
+        else {
+            return;
         }
     }
 
@@ -116,7 +119,7 @@
      * @param active true jika happy hour aktif
      */
     public static void setHappyHour(boolean active) {
-        happyHour = active;
+        MenuItem.happyHour = active;
     }
 
     /**
@@ -126,7 +129,6 @@
      * @return harga dasar menu
      */
     public abstract int basePrice();
-
 
     /**
      * Menghitung harga final setelah promo, happy hour, dan pajak.
@@ -145,13 +147,19 @@
      * @return harga final
      */
     public int price() {
-        int base = Math.max(0, basePrice());
-        double priceAfterPromo = base * (1 - promoPercent / 100.0);
-        if (happyHour) {
-            priceAfterPromo *= 0.8;
-        }
-        double tax = base * TAX_RATE;
-        return (int) Math.round(priceAfterPromo + tax);
+        double hargaAwal = Math.max(0, this.basePrice());
+        long pajak = Math.round(hargaAwal * TAX_RATE);
+
+    
+    double hargaPromo = hargaAwal * (100 - promoPercent) / 100.0;
+    long hargaBulatPromo = Math.round(hargaPromo);
+
+    long hargaFinal = hargaBulatPromo; 
+    if (happyHour) {
+        hargaFinal = Math.round(hargaBulatPromo * 0.8);
+    }
+
+    return (int) (hargaFinal + pajak);
     }
 
     /**
@@ -163,9 +171,8 @@
      * @return string simbol unit ("ml" atau "g")
      */
     private String unitSymbol() { 
-        return (unit == Unit.ML) ? "ml" : "g";
+        return (this.unit == Unit.ML) ? "ml" : "g";
     }
-
     /**
      * Label default menu.
      * Format: "<namaMenu> <quantity><unitSymbol>".
@@ -185,9 +192,10 @@
      * @return label menu (dengan atau tanpa harga)
      */
     public String label(boolean showPrice) {
-        if (showPrice) {
-            return String.format("%s | Rp%d", label(), price());
-        } else {
+        if (showPrice == true){
+            return label() + " | Rp" + price(); 
+        }
+        else {
             return label();
         }
     }
@@ -209,6 +217,6 @@
      */
     @Override
     public String toString() {
-         return kategori + " " + namaMenu + " " + quantity + unitSymbol() + " | Rp" + price() + " dari " + brand();
+        return this.kategori + " " + this.label()+ " | Rp" + this.price() + " dari " + this.brand();
     }
 }

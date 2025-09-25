@@ -27,9 +27,9 @@ public class NasiGoreng extends MenuItem {
         //       quantity=porsiGram, unit=Unit.GRAM, kategori=Kategori.MAKANAN
         // TODO: simpan parameter pedas ke atribut
         // TODO: buat ArrayList<String> topping dengan new ArrayList<>
-        super("Nasi Goreng", (porsiGram < 0 ? 100 : porsiGram), Unit.GRAM, Kategori.MAKANAN);
+        super("Nasi Goreng", porsiGram, Unit.GRAM, Kategori.MAKANAN);
         this.pedas = pedas;
-        this.topping = new ArrayList<>();
+        topping = new ArrayList<>();
     }
 
     /**
@@ -41,8 +41,11 @@ public class NasiGoreng extends MenuItem {
      * @param t nama topping (contoh: "Telur", "Ayam", "Sosis")
      */
     public void addTopping(String t) {
-        if (t != null && !t.trim().isEmpty()) {
-            this.topping.add(t.trim());
+        if (t != null && !t.trim().isEmpty()){
+            topping.add(t.trim());
+        }
+        else{
+            return;
         }
     }
 
@@ -57,10 +60,10 @@ public class NasiGoreng extends MenuItem {
      * @return true jika ada yang terhapus, false jika tidak ditemukan/invalid
      */
     public boolean removeTopping(String t) {
-        if (t != null && !t.trim().isEmpty()) {
-            return this.topping.remove(t.trim());
+        if (t == null) {
+            return false;
         }
-        return false;
+        return topping.remove(t.trim());
     }
 
     /**
@@ -76,7 +79,7 @@ public class NasiGoreng extends MenuItem {
      * @return ArrayList<String> dari topping
      */
     public ArrayList<String> getTopping() {
-        return new ArrayList<>(topping);
+        return new ArrayList<>(this.topping);
     }
 
     /**
@@ -85,7 +88,7 @@ public class NasiGoreng extends MenuItem {
      * @return true jika pedas
      */
     public boolean isPedas() {
-        return this.pedas;
+        return pedas;
     }
 
     /**
@@ -109,12 +112,12 @@ public class NasiGoreng extends MenuItem {
      */
     @Override
     public int basePrice() {
-        int base = 15000;
-        base += 3000 * topping.size();
-        if (pedas) {
-            base += 2000;
+        int harga = 15000;
+        harga += this.topping.size() * 3000;
+        if (pedas){
+            harga += 2000;
         }
-        return base;
+        return harga;
     }
 
     /**
@@ -136,20 +139,22 @@ public class NasiGoreng extends MenuItem {
      */
     @Override
     public String label() {
-        StringBuilder sb = new StringBuilder("Nasi Goreng ");
-        if (topping.isEmpty()) {
-            sb.append("Original ");
-        } else {
-            for (String t : topping) {
-                sb.append(t).append(" ");
+        String label = super.getNamaMenu();
+        if (topping.isEmpty()){
+            label += " Original";
+        }
+        else{
+            for (String t : topping){
+                label += " " + t;
             }
         }
-        if (pedas) {
-            sb.append("Pedas ");
-        } else {
-            sb.append("Tidak Pedas ");
+        if (pedas){
+            label += " Pedas";
         }
-        sb.append(getQuantity()).append("g");
-        return sb.toString().trim();
+        else {
+            label += " Tidak Pedas";
+        }
+        label += " " + super.getQuantity() + "g";
+        return label;
     }
 }
