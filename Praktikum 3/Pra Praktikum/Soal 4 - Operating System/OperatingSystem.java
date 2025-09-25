@@ -1,6 +1,3 @@
-
-import Praktikum.UsageType;
-
 public abstract class OperatingSystem {
     private String name;
     private String version;
@@ -30,7 +27,7 @@ public abstract class OperatingSystem {
         return baseScore;
     }
 
-    public abstract double calculatePerformanceScore();
+    public abstract double calculateCompatibility(UsageType usage);
 
     protected double clampScore(double score) {
         if (score < 0) {
@@ -50,7 +47,7 @@ public abstract class OperatingSystem {
         System.out.println("Version: " + version);
         System.out.println("Kernel Type: " + kernelType);
         String addInfo = getAdditionalInfo();
-        
+
         if (!addInfo.isEmpty()) {
             System.out.println(addInfo);
         }
