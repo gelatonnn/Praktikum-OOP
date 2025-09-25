@@ -44,9 +44,6 @@ public class NasiGoreng extends MenuItem {
         if (t != null && !t.trim().isEmpty()){
             topping.add(t.trim());
         }
-        else{
-            return;
-        }
     }
 
     /**

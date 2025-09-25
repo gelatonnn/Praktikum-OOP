@@ -108,9 +108,6 @@
         if (percent >= 0 && percent <= 90){
             promoPercent = percent;
         }
-        else {
-            return;
-        }
     }
 
     /**
@@ -119,7 +116,7 @@
      * @param active true jika happy hour aktif
      */
     public static void setHappyHour(boolean active) {
-        MenuItem.happyHour = active;
+        happyHour = active;
     }
 
     /**
