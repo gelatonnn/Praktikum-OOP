@@ -1,30 +1,44 @@
 public class Linux extends OperatingSystem {
-    public enum Distro {
-        UBUNTU, FEDORA, ARCH, DEBIAN
+    public enum Distro{
+        UBUNTU,
+        FEDORA,
+        ARCH,
+        DEBIAN;
     }
-    
+
     private Distro distroType;
 
-    public Linux(String name, String version, String kernelType, double baseScore, Distro distroType) {
+    public Linux(String name, String version, String kernelType, double baseScore, Distro distroType){
         super(name, version, kernelType, baseScore);
-        this.distroType = distroType;
+        this.distroType = (distroType != null) ? distroType : Distro.UBUNTU;
     }
 
-    public double calculateCompatibility(UsageType usage) {
-        double multiplier = 0;
-        if (usage == UsageType.SERVER) {
-            multiplier = 0.2;
-        } else if (usage == UsageType.DEVELOPMENT) {
-            multiplier = 0.1;
-        } else if (usage == UsageType.GAMING) {
-            multiplier = -0.15;
-        }
-        double result = getBaseScore() + (getBaseScore() * multiplier);
-        return clampScore(result);
+    public Distro getDistroType() {
+        return distroType;
     }
 
     @Override
     protected String getAdditionalInfo() {
         return "Distribution: " + distroType.name();
+    }
+    
+    @Override
+    public double calculateCompatibility(UsageType usage) {
+        double multiplier = 0.0;
+        
+        switch (usage) {
+            case SERVER:
+                multiplier = 0.20;
+                break;
+            case DEVELOPMENT:
+                multiplier = 0.10;
+                break;
+            case GAMING:
+                multiplier = -0.15;
+                break;
+        }
+        
+        double score = getBaseScore() + (multiplier * getBaseScore());
+        return clampScore(score);
     }
 }
