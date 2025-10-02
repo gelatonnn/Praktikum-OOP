@@ -16,45 +16,42 @@ class Laptop implements IDesktop {
   }
 
   @Override
-  public void turnOn() {
-    isOn = true;
-    System.out.println(brand + " " + model + " is now ON");
-  }
-
-  @Override
-  public void turnOff() {
-    isOn = false;
-    System.out.println(brand + " " + model + " is now OFF");
-  }
-
-  @Override
-  public String getInfo() {
-    String status = isOn ? "[ON]" : "[OFF]";
-    return status + " " + brand + " " + model + " - Rp " + (long)price;
-  }
-
-  @Override
-  public double getPrice() {
-    return price;
-  }
-
-  @Override
-  public String getBrand() {
-    return brand;
-  }
-
-  @Override
-  public void installSoftware(String softwareName) {
+  public void installSoftware(String softwareName){
     System.out.println("Installing " + softwareName + " on " + brand + " " + model);
   }
 
-  @Override
-  public void openApplication(String appName) {
+  public void openApplication(String appName){
     System.out.println("Opening " + appName);
   }
 
-  @Override
-  public String getOperatingSystem() {
+  public String getOperatingSystem(){
     return operatingSystem;
+  }
+
+  public void turnOn(){
+    this.isOn = true;
+    System.out.println(brand + " " + model + " is now ON");
+  }
+
+  public void turnOff(){
+    this.isOn = false;
+    System.out.println(brand + " " + model + " is now OFF");
+  }
+
+  public String getInfo(){
+    if (isOn){
+      return "[ON] " + brand + " " + model + " - Rp " + price;
+    }
+    else {
+      return "[OFF] " + brand + " " + model + " - Rp " + price;
+    }
+  }
+
+  public double getPrice(){
+    return price;
+  }
+
+  public String getBrand(){
+    return brand;
   }
 }

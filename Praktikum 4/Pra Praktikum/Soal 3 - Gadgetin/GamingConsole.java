@@ -13,34 +13,6 @@ class GamingConsole implements IGadget {
     System.out.println("Gaming Console " + brand + " " + model + " created.");
   }
 
-  @Override
-  public void turnOn() {
-    isOn = true;
-    System.out.println(brand + " " + model + " is now ON");
-  }
-
-  @Override
-  public void turnOff() {
-    isOn = false;
-    System.out.println(brand + " " + model + " is now OFF");
-  }
-
-  @Override
-  public String getInfo() {
-    String status = isOn ? "[ON]" : "[OFF]";
-    return status + " " + brand + " " + model + " - Rp " + (long)price;
-  }
-
-  @Override
-  public double getPrice() {
-    return price;
-  }
-
-  @Override
-  public String getBrand() {
-    return brand;
-  }
-
   // Gaming Console specific method
   /**
    * Memainkan game pada konsol
@@ -50,5 +22,33 @@ class GamingConsole implements IGadget {
    */
   public void playGame(String gameName) {
     System.out.println("Playing " + gameName + " on " + brand + " " + model);
+  }
+
+  @Override
+  public void turnOn(){
+    this.isOn = true;
+    System.out.println(brand + " " + model + " is now ON");
+  }
+
+  public void turnOff(){
+    this.isOn = false;
+    System.out.println(brand + " " + model + " is now OFF");
+  }
+
+  public String getInfo(){
+    if (isOn){
+      return "[ON] " + brand + " " + model + " - Rp " + price;
+    }
+    else {
+      return "[OFF] " + brand + " " + model + " - Rp " + price;
+    }
+  }
+
+  public double getPrice(){
+    return price;
+  }
+
+  public String getBrand(){
+    return brand;
   }
 }

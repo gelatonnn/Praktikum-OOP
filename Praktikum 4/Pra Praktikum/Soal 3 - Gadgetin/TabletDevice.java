@@ -15,71 +15,62 @@ class TabletDevice implements ITablet {
     System.out.println("Tablet " + brand + " " + model + " created.");
   }
 
-  @Override
-  public void turnOn() {
-    isOn = true;
-    System.out.println(brand + " " + model + " is now ON");
-  }
-
-  @Override
-  public void turnOff() {
-    isOn = false;
-    System.out.println(brand + " " + model + " is now OFF");
-  }
-
-  @Override
-  public String getInfo() {
-    String status = isOn ? "[ON]" : "[OFF]";
-    return status + " " + brand + " " + model + " - Rp " + (long)price;
-  }
-
-  @Override
-  public double getPrice() {
-    return price;
-  }
-
-  @Override
-  public String getBrand() {
-    return brand;
-  }
-
-  @Override
-  public void makeCall(String number) {
-    System.out.println("Calling " + number + " from " + brand + " " + model);
-  }
-
-  @Override
-  public void sendMessage(String message) {
-    System.out.println("Sending message: " + message);
-  }
-
-  @Override
-  public void connectToWifi(String networkName) {
-    System.out.println("Connected to " + networkName);
-  }
-
-  @Override
-  public void installSoftware(String softwareName) {
-    System.out.println("Installing " + softwareName + " on " + brand + " " + model);
-  }
-
-  @Override
-  public void openApplication(String appName) {
-    System.out.println("Opening " + appName);
-  }
-
-  @Override
-  public String getOperatingSystem() {
-    return operatingSystem;
-  }
-
-  @Override
-  public void usePen() {
+  public void usePen(){
     System.out.println("Using pen on " + brand + " " + model);
   }
 
-  @Override
-  public void rotateScreen() {
+  public void rotateScreen(){
     System.out.println("Screen rotated on " + brand + " " + model);
+  }
+
+    public void makeCall(String number){
+    System.out.println("Calling " + number + " from " + brand + " " + model);
+  }
+
+  public void sendMessage(String message){
+    System.out.println("Sending message: " + message);
+  }
+
+  public void connectToWifi(String networkName){
+    System.out.println("Connected to " + networkName);
+  }
+
+    public void turnOn(){
+    this.isOn = true;
+    System.out.println(brand + " " + model + " is now ON");
+  }
+
+  public void turnOff(){
+    this.isOn = false;
+    System.out.println(brand + " " + model + " is now OFF");
+  }
+
+  public String getInfo(){
+    if (isOn){
+      return "[ON] " + brand + " " + model + " - Rp " + price;
+    }
+    else {
+      return "[OFF] " + brand + " " + model + " - Rp " + price;
+    }
+  }
+
+  public double getPrice(){
+    return price;
+  }
+
+  public String getBrand(){
+    return brand;
+  }
+
+  public void installSoftware(String softwareName){
+    System.out.println("Installing " + softwareName + " on " + brand + " " + model);
+  }
+
+  public void openApplication(String appName){
+    System.out.println("Opening " + appName);
+  }
+
+  public String getOperatingSystem(){
+    return operatingSystem;
   }
 }
