@@ -4,7 +4,7 @@ import java.util.List;
 public class Section<T extends Product> {
     private String name;
     private List<T> products;
-
+    
     /*
      * TODO: Lengkapi implementasi konstruktor Section
      * Semua attribut diinisialisasi melalui konstruktor.
@@ -13,7 +13,7 @@ public class Section<T extends Product> {
     public Section(String name) {
         // TODO: Lengkapi implementasi method ini
         this.name = name;
-        this.products = new ArrayList<>();
+        products = new ArrayList<>();
     }
 
     /*
@@ -22,7 +22,7 @@ public class Section<T extends Product> {
      */
     public void addProduct(T product) {
         // TODO: Lengkapi implementasi method ini
-        this.products.add(product);
+        (products).add(product);
     }
     
     /*
@@ -34,7 +34,8 @@ public class Section<T extends Product> {
         // TODO: Lengkapi implementasi method ini
         if (products.contains(product)){
             (products).remove(product);
-        } else {
+        }
+        else {
             System.out.println("Product not found");
         }
     }
@@ -45,7 +46,7 @@ public class Section<T extends Product> {
      */
     public List<T> getProducts() {
         // TODO: Lengkapi implementasi method ini
-        return this.products;
+        return products;
     }
 
     /*
@@ -54,7 +55,7 @@ public class Section<T extends Product> {
      */
     public String getName() {
         // TODO: Lengkapi implementasi method ini
-        return this.name;
+        return name;
     }
 
     /*
@@ -65,10 +66,10 @@ public class Section<T extends Product> {
      */
     public T getProductWithNameAndType(String name, Class<? extends T> type) {
         // TODO: Lengkapi implementasi method ini
-        for (T product : this.products) {
+        for (T product : products) {
             if (product.getName().equals(name) && type.isInstance(product)) {
-                System.out.println(product);
-                return product;
+                System.out.println(product); 
+                return product; 
             }
         }
         System.out.println("Product not found");
@@ -81,8 +82,8 @@ public class Section<T extends Product> {
      */
     public double getTotalValue() {
         // TODO: Lengkapi implementasi method ini
-        double totalValue = 0;
-        for (T product : this.products) {
+        double totalValue = 0.0;
+        for (T product : products) {
             totalValue += product.getPrice();
         }
         return totalValue;
@@ -95,15 +96,16 @@ public class Section<T extends Product> {
     public static <U extends Product> U findCheapest(List<? extends U> list) {
         // TODO: Lengkapi implementasi method ini
         if (list == null || list.isEmpty()) {
-            return null;
+            return null; 
         }
 
-        U cheapest = list.get(0);
+        U cheapest = list.get(0);;
         for (U product : list) {
             if (product.getPrice() < cheapest.getPrice()) {
                 cheapest = product;
             }
         }
+
         return cheapest;
     }
 

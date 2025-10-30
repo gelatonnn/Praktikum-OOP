@@ -21,7 +21,7 @@ public class Electronic implements Product {
     @Override
     public double getPrice() {
         // TODO: Lengkapi implementasi method ini
-        return this.price;
+        return price;
     }
 
     /*
@@ -31,7 +31,7 @@ public class Electronic implements Product {
     @Override
     public String getName() {
         // TODO: Lengkapi implementasi method ini
-        return this.name;
+        return name;
     }
 
     /*
@@ -40,7 +40,7 @@ public class Electronic implements Product {
      */
     public int getWarrantyMonths() {
         // TODO: Lengkapi implementasi method ini
-        return this.warrantyMonths;
+        return warrantyMonths;
     }
 
     /*

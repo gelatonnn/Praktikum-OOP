@@ -33,18 +33,18 @@ public class Borma {
         // TODO: Lengkapi implementasi method ini
         Section<Product> sectionToRemove = null;
 
-        for (Section<Product> section : sections) {
-            if (section.getName().equals(sectionName)) {
+        for (Section<Product> section : sections){
+            if (section.getName().equals(sectionName)){
                 sectionToRemove = section;
                 break;
             }
         }
-        
+
         if (sectionToRemove != null){
             sections.remove(sectionToRemove);
         } else {
             System.out.println("Section not found");
-        }
+        } 
     }
 
     /*
@@ -63,18 +63,18 @@ public class Borma {
      * tampilkan pesan "Section not found"
      */
     public static void addProductToSection(Product product, String sectionName) {
-        // TODO: Lengkapi implementasi method ini\
+        // TODO: Lengkapi implementasi method ini
         Section<Product> targetSection = null;
 
-        for (Section<Product> section : sections) {
-            if (section.getName().equals(sectionName)) {
+        for (Section<Product> section : sections){
+            if (section.getName().equals(sectionName)){
                 targetSection = section;
                 break;
             }
         }
-        if (targetSection != null) {
+        if (targetSection != null){
             targetSection.addProduct(product);
-        }  else {
+        } else{
             System.out.println("Section not found");
         }
     }
@@ -89,13 +89,12 @@ public class Borma {
         // TODO: Lengkapi implementasi method ini
         Section<Product> targetSection = null;
 
-        for (Section<Product> section : sections) {
-            if (section.getName().equals(sectionName)) {
+        for (Section<Product> section : sections){
+            if (section.getName().equals(sectionName)){
                 targetSection = section;
                 break;
             }
         }
-        
         if (targetSection != null){
             targetSection.removeProduct(product);
         } else{
@@ -110,10 +109,11 @@ public class Borma {
      */
     public static void showTotalValue() {
         // TODO: Lengkapi implementasi method ini
-        double totalValue = 0.0;
-        for (Section<Product> section : sections) {
-            totalValue += section.getTotalValue();
-        }
-        System.out.printf("Total value of all sections: Rp%.0f%n", totalValue);
+            double Total = 0.0;
+        
+            for (Section<Product> section : sections) {
+                Total += section.getTotalValue();
+            }
+            System.out.println("Total value of all sections: Rp" + Total);
     }
 }

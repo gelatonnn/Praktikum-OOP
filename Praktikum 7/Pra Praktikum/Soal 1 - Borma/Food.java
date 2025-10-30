@@ -21,7 +21,7 @@ public class Food implements Product {
     @Override
     public double getPrice() {
         // TODO: Lengkapi implementasi method ini
-        return this.price;
+        return price;
     }
 
     /*
@@ -31,7 +31,7 @@ public class Food implements Product {
     @Override
     public String getName() {
         // TODO: Lengkapi implementasi method ini
-        return this.name;
+        return name;
     }
 
     /*
@@ -40,7 +40,7 @@ public class Food implements Product {
      */
     public String getExpiryDate() {
         // TODO: Lengkapi implementasi method ini
-        return this.expiryDate;
+        return expiryDate;
     }
 
     /*
