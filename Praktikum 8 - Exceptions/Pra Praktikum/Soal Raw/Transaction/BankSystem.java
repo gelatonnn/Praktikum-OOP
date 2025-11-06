@@ -13,8 +13,8 @@ public class BankSystem {
 
     /* TODO : Lengkapi method addAccount(BankAccount account)
        Menambahkan akun ke sistem.
-       - Jika sudah penuh, lempar IllegalStateException.
-       - Jika akun null, lempar NullPointerException.
+       - Jika sudah penuh, lempar IllegalStateException("Sistem sudah penuh.").
+       - Jika akun null, lempar NullPointerException("Akun tidak boleh null.").
        Tidak ada nilai kembalian. */
     public void addAccount(BankAccount account) {
         // Type your code
